@@ -68,7 +68,6 @@ samtools faidx ref.fasta
 
 ### Question 3
 3) What is the genomic coverage of each DMA exon in these samples? Do you see any DMD deletion in any samples?
-* I am assuming this is referring to DMD exons.
 * Following best practices, I used DepthOfCoverage from the GATK toolkit to create files. See below code: 
 ```
 /home/laramie/gatk-4.4.0.0/gatk \
@@ -78,4 +77,47 @@ samtools faidx ref.fasta
    -I SampleA.processed.bam \
    -L DMD.intervals
 ```
-* I did my best to interpret the output files. 
+* I did my best to interpret the output files. From my understanding the average depth of coverage of DMD exons for each sample is as follows:
+
+| Sample ID | Mean Coverage | No coverage present? | # of areas with no coverage |
+|-----------|---------------|----------------------|-----------------------------|
+| SampleA   | 13.96         | Yes                  | 1                           |
+| SampleB   | 8.50          | Yes                  | 6                           |
+| SampleC   | 8.54          | Yes                  | 1                           |
+
+Based on these results, I would conclude that SampleB most likely has a DMD exon deletion. SampleA and SampleC may have an exon deletion but I need to spend more time understaning how to interpret these results.
+
+### Question 4
+4) Check whether any of the 2 samples are from the same family. (Hint: mother and son)
+
+* This question was a little harder for me. I used vcftools to create plink files. Then edited the .ped file to only include the 6 mandatory fields.
+```
+vcftools --vcf DMDGenotyped.vcf --plink --out plink
+```
+* I used CalculateGenotypePosteriors next using the command below: 
+```
+/home/laramie/gatk-4.4.0.0/gatk CalculateGenotypePosteriors -V DMDGenotyped.vcf -O familyFINAL.vcf -ped plinkDMD.ped
+```
+* However, I want to be honest and say that I am unsure how to interpret these results. I have no prior knowledge of the metadata for the samples. My guess would be that you can determine relatedness based on the number of shared variants. However, with a small dataset (exons only resulted in few variant sites) I am not sure I can confidently report relatedness. I would be more confident in interpreting the results by using the full vcf dataset, however, I do not have the compute resources to do so.
+
+### Question 5
+5) Are there any hard-clipping reads in the bam files? If yes, can you remove them?
+
+* I believe there are hard clipped reads in the BAM file. I do not know the best way to remove them. One option I found was to use bamutils, but this option seems to remove all clipped reads (hard and soft). The other option I found was to use some awk code combined with samtools code. I tried this option but I am not 100% confident in the results. 
+
+```
+#extract name of clipped reads:
+samtools view SampleA.processed.bam | awk '$6 ~ /H/{print $1}' | sort -k1,1 | uniq > names.txt
+
+# sort original bam on names:
+samtools view SampleA.processed.bam | sort -k1,1 > tmp.sam
+
+# get header
+samtools view -H SampleA.processed.bam > new.sam
+
+# outer-join (I use ctrl+v+tab to explicitly get the tab character)
+join -t '   ' -v 1 -1 1 -2 1 tmp.sam names.txt >> new.sam
+
+# convert to bam
+samtools view -bS new.sam > SampleA_noHCs.bam
+```
