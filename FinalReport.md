@@ -103,7 +103,7 @@ vcftools --vcf DMDGenotyped.vcf --plink --out plink
 ### Question 5
 5) Are there any hard-clipping reads in the bam files? If yes, can you remove them?
 
-* I believe there are hard clipped reads in the BAM file. I do not know the best way to remove them. One option I found was to use bamutils, but this option seems to remove all clipped reads (hard and soft). The other option I found was to use some awk code combined with samtools code. I tried this option but I am not 100% confident in the results. 
+* I believe there are hard clipped reads in the BAM file. I do not know the best way to remove them. One option I found was to use bamutils, but this option seems to remove all clipped reads (hard and soft). The other option I found was to use some awk code combined with samtools code. I tried this option but I am not 100% confident in the results. I also saw the ClipReads option on GATK but I don't fully understand all the options and if it can be used to remove reads based on hard clipping.
 
 ```
 #extract name of clipped reads:
@@ -121,3 +121,6 @@ join -t '   ' -v 1 -1 1 -2 1 tmp.sam names.txt >> new.sam
 # convert to bam
 samtools view -bS new.sam > SampleA_noHCs.bam
 ```
+
+### Summary
+Overall, I recognize that I don't have a full grasp on variant calling. However, I hope I have shown that I am willing to learn and improve upon my skills. I plan to spend time learning the Best Practices for GATK and completing tutorials. 
