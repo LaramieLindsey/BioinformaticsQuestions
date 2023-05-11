@@ -1,0 +1,130 @@
+##fileformat=VCFv4.2
+##ALT=<ID=NON_REF,Description="Represents any possible alternative allele not already represented at this location by REF and ALT">
+##FILTER=<ID=LowQual,Description="Low quality">
+##FILTER=<ID=PASS,Description="All filters passed">
+##FORMAT=<ID=AD,Number=R,Type=Integer,Description="Allelic depths for the ref and alt alleles in the order listed">
+##FORMAT=<ID=DP,Number=1,Type=Integer,Description="Approximate read depth (reads with MQ=255 or with bad mates are filtered)">
+##FORMAT=<ID=GQ,Number=1,Type=Integer,Description="Genotype Quality">
+##FORMAT=<ID=GT,Number=1,Type=String,Description="Genotype">
+##FORMAT=<ID=MIN_DP,Number=1,Type=Integer,Description="Minimum DP observed within the GVCF block">
+##FORMAT=<ID=PGT,Number=1,Type=String,Description="Physical phasing haplotype information, describing how the alternate alleles are phased in relation to one another; will always be heterozygous and is not intended to describe called alleles">
+##FORMAT=<ID=PID,Number=1,Type=String,Description="Physical phasing ID information, where each unique ID within a given sample (but not across samples) connects records within a phasing group">
+##FORMAT=<ID=PL,Number=G,Type=Integer,Description="Normalized, Phred-scaled likelihoods for genotypes as defined in the VCF specification">
+##FORMAT=<ID=PS,Number=1,Type=Integer,Description="Phasing set (typically the position of the first variant in the set)">
+##FORMAT=<ID=RGQ,Number=1,Type=Integer,Description="Unconditional reference genotype confidence, encoded as a phred quality -10*log10 p(genotype call is wrong)">
+##FORMAT=<ID=SB,Number=4,Type=Integer,Description="Per-sample component statistics which comprise the Fisher's Exact Test to detect strand bias.">
+##GATKCommandLine=<ID=GenomicsDBImport,CommandLine="GenomicsDBImport --genomicsdb-workspace-path mydb --variant SampleA.DMDexons.vcf --variant SampleB.DMDexons.vcf --variant SampleC.DMDexons.vcf --intervals /home/laramie/gatk/gatkProject/ProjectQs/DMD_2.intervals --reference /home/laramie/gatk/gatkProject/ProjectQs/ref.fasta --tmp-dir tmp --genomicsdb-segment-size 1048576 --genomicsdb-vcf-buffer-size 16384 --overwrite-existing-genomicsdb-workspace false --batch-size 0 --consolidate false --validate-sample-name-map false --merge-input-intervals false --reader-threads 1 --max-num-intervals-to-import-in-parallel 1 --merge-contigs-into-num-partitions 0 --genomicsdb-shared-posixfs-optimizations false --bypass-feature-reader false --genomicsdb-use-gcs-hdfs-connector false --interval-set-rule UNION --interval-padding 0 --interval-exclusion-padding 0 --interval-merging-rule ALL --read-validation-stringency SILENT --seconds-between-progress-updates 10.0 --disable-sequence-dictionary-validation false --create-output-bam-index true --create-output-bam-md5 false --create-output-variant-index true --create-output-variant-md5 false --max-variants-per-shard 0 --lenient false --add-output-sam-program-record true --add-output-vcf-command-line true --cloud-prefetch-buffer 0 --cloud-index-prefetch-buffer 0 --disable-bam-index-caching false --sites-only-vcf-output false --help false --version false --showHidden false --verbosity INFO --QUIET false --use-jdk-deflater false --use-jdk-inflater false --gcs-max-retries 20 --gcs-project-for-requester-pays  --disable-tool-default-read-filters false",Version="4.4.0.0",Date="May 9, 2023 at 4:54:56 PM CDT">
+##GATKCommandLine=<ID=SelectVariants,CommandLine="SelectVariants --output DMD_no1bpinsertions_1.vcf --select-type-to-exclude INDEL --variant DMDGenotyped.vcf --intervals /home/laramie/gatk/gatkProject/ProjectQs/DMD_2.intervals --reference /home/laramie/gatk/gatkProject/ProjectQs/ref.fasta --tmp-dir tmp/ --apply-jexl-filters-first false --invertSelect false --exclude-non-variants false --exclude-filtered false --preserve-alleles false --remove-unused-alternates false --restrict-alleles-to ALL --keep-original-ac false --keep-original-dp false --mendelian-violation false --invert-mendelian-violation false --mendelian-violation-qual-threshold 0.0 --select-random-fraction 1.0 --remove-fraction-genotypes 0.0 --ignore-non-ref-in-types false --fully-decode false --max-indel-size 2147483647 --min-indel-size 0 --max-filtered-genotypes 2147483647 --min-filtered-genotypes 0 --max-fraction-filtered-genotypes 1.0 --min-fraction-filtered-genotypes 0.0 --max-nocall-number 2147483647 --max-nocall-fraction 1.0 --set-filtered-gt-to-nocall false --allow-nonoverlapping-command-line-samples false --suppress-reference-path false --fail-on-unsorted-genotype false --genomicsdb-max-alternate-alleles 50 --call-genotypes false --genomicsdb-use-bcf-codec false --genomicsdb-shared-posixfs-optimizations false --genomicsdb-use-gcs-hdfs-connector false --interval-set-rule UNION --interval-padding 0 --interval-exclusion-padding 0 --interval-merging-rule ALL --read-validation-stringency SILENT --seconds-between-progress-updates 10.0 --disable-sequence-dictionary-validation false --create-output-bam-index true --create-output-bam-md5 false --create-output-variant-index true --create-output-variant-md5 false --max-variants-per-shard 0 --lenient false --add-output-sam-program-record true --add-output-vcf-command-line true --cloud-prefetch-buffer 40 --cloud-index-prefetch-buffer -1 --disable-bam-index-caching false --sites-only-vcf-output false --help false --version false --showHidden false --verbosity INFO --QUIET false --use-jdk-deflater false --use-jdk-inflater false --gcs-max-retries 20 --gcs-project-for-requester-pays  --disable-tool-default-read-filters false",Version="4.4.0.0",Date="May 9, 2023 at 5:44:28 PM CDT">
+##INFO=<ID=AC,Number=A,Type=Integer,Description="Allele count in genotypes, for each ALT allele, in the same order as listed">
+##INFO=<ID=AF,Number=A,Type=Float,Description="Allele Frequency, for each ALT allele, in the same order as listed">
+##INFO=<ID=AN,Number=1,Type=Integer,Description="Total number of alleles in called genotypes">
+##INFO=<ID=BaseQRankSum,Number=1,Type=Float,Description="Z-score from Wilcoxon rank sum test of Alt Vs. Ref base qualities">
+##INFO=<ID=DP,Number=1,Type=Integer,Description="Approximate read depth; some reads may have been filtered">
+##INFO=<ID=END,Number=1,Type=Integer,Description="Stop position of the interval">
+##INFO=<ID=ExcessHet,Number=1,Type=Float,Description="Phred-scaled p-value for exact test of excess heterozygosity">
+##INFO=<ID=FS,Number=1,Type=Float,Description="Phred-scaled p-value using Fisher's exact test to detect strand bias">
+##INFO=<ID=InbreedingCoeff,Number=1,Type=Float,Description="Inbreeding coefficient as estimated from the genotype likelihoods per-sample when compared against the Hardy-Weinberg expectation">
+##INFO=<ID=MLEAC,Number=A,Type=Integer,Description="Maximum likelihood expectation (MLE) for the allele counts (not necessarily the same as the AC), for each ALT allele, in the same order as listed">
+##INFO=<ID=MLEAF,Number=A,Type=Float,Description="Maximum likelihood expectation (MLE) for the allele frequency (not necessarily the same as the AF), for each ALT allele, in the same order as listed">
+##INFO=<ID=MQ,Number=1,Type=Float,Description="RMS Mapping Quality">
+##INFO=<ID=MQRankSum,Number=1,Type=Float,Description="Z-score From Wilcoxon rank sum test of Alt vs. Ref read mapping qualities">
+##INFO=<ID=QD,Number=1,Type=Float,Description="Variant Confidence/Quality by Depth">
+##INFO=<ID=RAW_MQandDP,Number=2,Type=Integer,Description="Raw data (sum of squared MQ and total depth) for improved RMS Mapping Quality calculation. Incompatible with deprecated RAW_MQ formulation.">
+##INFO=<ID=ReadPosRankSum,Number=1,Type=Float,Description="Z-score from Wilcoxon rank sum test of Alt vs. Ref read position bias">
+##INFO=<ID=SOR,Number=1,Type=Float,Description="Symmetric Odds Ratio of 2x2 contingency table to detect strand bias">
+##contig=<ID=1,length=249250621,assembly=ref.fasta>
+##contig=<ID=10,length=135534747,assembly=ref.fasta>
+##contig=<ID=11,length=135006516,assembly=ref.fasta>
+##contig=<ID=12,length=133851895,assembly=ref.fasta>
+##contig=<ID=13,length=115169878,assembly=ref.fasta>
+##contig=<ID=14,length=107349540,assembly=ref.fasta>
+##contig=<ID=15,length=102531392,assembly=ref.fasta>
+##contig=<ID=16,length=90354753,assembly=ref.fasta>
+##contig=<ID=17,length=81195210,assembly=ref.fasta>
+##contig=<ID=18,length=78077248,assembly=ref.fasta>
+##contig=<ID=19,length=59128983,assembly=ref.fasta>
+##contig=<ID=2,length=243199373,assembly=ref.fasta>
+##contig=<ID=20,length=63025520,assembly=ref.fasta>
+##contig=<ID=21,length=48129895,assembly=ref.fasta>
+##contig=<ID=22,length=51304566,assembly=ref.fasta>
+##contig=<ID=3,length=198022430,assembly=ref.fasta>
+##contig=<ID=4,length=191154276,assembly=ref.fasta>
+##contig=<ID=5,length=180915260,assembly=ref.fasta>
+##contig=<ID=6,length=171115067,assembly=ref.fasta>
+##contig=<ID=7,length=159138663,assembly=ref.fasta>
+##contig=<ID=8,length=146364022,assembly=ref.fasta>
+##contig=<ID=9,length=141213431,assembly=ref.fasta>
+##contig=<ID=MT,length=16569,assembly=ref.fasta>
+##contig=<ID=X,length=155270560,assembly=ref.fasta>
+##contig=<ID=Y,length=59373566,assembly=ref.fasta>
+##contig=<ID=GL000192.1,length=547496,assembly=ref.fasta>
+##contig=<ID=GL000225.1,length=211173,assembly=ref.fasta>
+##contig=<ID=GL000194.1,length=191469,assembly=ref.fasta>
+##contig=<ID=GL000193.1,length=189789,assembly=ref.fasta>
+##contig=<ID=GL000200.1,length=187035,assembly=ref.fasta>
+##contig=<ID=GL000222.1,length=186861,assembly=ref.fasta>
+##contig=<ID=GL000212.1,length=186858,assembly=ref.fasta>
+##contig=<ID=GL000195.1,length=182896,assembly=ref.fasta>
+##contig=<ID=GL000223.1,length=180455,assembly=ref.fasta>
+##contig=<ID=GL000224.1,length=179693,assembly=ref.fasta>
+##contig=<ID=GL000219.1,length=179198,assembly=ref.fasta>
+##contig=<ID=GL000205.1,length=174588,assembly=ref.fasta>
+##contig=<ID=GL000215.1,length=172545,assembly=ref.fasta>
+##contig=<ID=GL000216.1,length=172294,assembly=ref.fasta>
+##contig=<ID=GL000217.1,length=172149,assembly=ref.fasta>
+##contig=<ID=GL000199.1,length=169874,assembly=ref.fasta>
+##contig=<ID=GL000211.1,length=166566,assembly=ref.fasta>
+##contig=<ID=GL000213.1,length=164239,assembly=ref.fasta>
+##contig=<ID=GL000220.1,length=161802,assembly=ref.fasta>
+##contig=<ID=GL000218.1,length=161147,assembly=ref.fasta>
+##contig=<ID=GL000209.1,length=159169,assembly=ref.fasta>
+##contig=<ID=GL000221.1,length=155397,assembly=ref.fasta>
+##contig=<ID=GL000214.1,length=137718,assembly=ref.fasta>
+##contig=<ID=GL000228.1,length=129120,assembly=ref.fasta>
+##contig=<ID=GL000227.1,length=128374,assembly=ref.fasta>
+##contig=<ID=GL000191.1,length=106433,assembly=ref.fasta>
+##contig=<ID=GL000208.1,length=92689,assembly=ref.fasta>
+##contig=<ID=GL000198.1,length=90085,assembly=ref.fasta>
+##contig=<ID=GL000204.1,length=81310,assembly=ref.fasta>
+##contig=<ID=GL000233.1,length=45941,assembly=ref.fasta>
+##contig=<ID=GL000237.1,length=45867,assembly=ref.fasta>
+##contig=<ID=GL000230.1,length=43691,assembly=ref.fasta>
+##contig=<ID=GL000242.1,length=43523,assembly=ref.fasta>
+##contig=<ID=GL000243.1,length=43341,assembly=ref.fasta>
+##contig=<ID=GL000241.1,length=42152,assembly=ref.fasta>
+##contig=<ID=GL000236.1,length=41934,assembly=ref.fasta>
+##contig=<ID=GL000240.1,length=41933,assembly=ref.fasta>
+##contig=<ID=GL000206.1,length=41001,assembly=ref.fasta>
+##contig=<ID=GL000232.1,length=40652,assembly=ref.fasta>
+##contig=<ID=GL000234.1,length=40531,assembly=ref.fasta>
+##contig=<ID=GL000202.1,length=40103,assembly=ref.fasta>
+##contig=<ID=GL000238.1,length=39939,assembly=ref.fasta>
+##contig=<ID=GL000244.1,length=39929,assembly=ref.fasta>
+##contig=<ID=GL000248.1,length=39786,assembly=ref.fasta>
+##contig=<ID=GL000196.1,length=38914,assembly=ref.fasta>
+##contig=<ID=GL000249.1,length=38502,assembly=ref.fasta>
+##contig=<ID=GL000246.1,length=38154,assembly=ref.fasta>
+##contig=<ID=GL000203.1,length=37498,assembly=ref.fasta>
+##contig=<ID=GL000197.1,length=37175,assembly=ref.fasta>
+##contig=<ID=GL000245.1,length=36651,assembly=ref.fasta>
+##contig=<ID=GL000247.1,length=36422,assembly=ref.fasta>
+##contig=<ID=GL000201.1,length=36148,assembly=ref.fasta>
+##contig=<ID=GL000235.1,length=34474,assembly=ref.fasta>
+##contig=<ID=GL000239.1,length=33824,assembly=ref.fasta>
+##contig=<ID=GL000210.1,length=27682,assembly=ref.fasta>
+##contig=<ID=GL000231.1,length=27386,assembly=ref.fasta>
+##contig=<ID=GL000229.1,length=19913,assembly=ref.fasta>
+##contig=<ID=GL000226.1,length=15008,assembly=ref.fasta>
+##contig=<ID=GL000207.1,length=4262,assembly=ref.fasta>
+##reference=file:///home/laramie/gatk/gatkProject/ProjectQs/ref.fasta
+##source=GenomicsDBImport
+##source=SelectVariants
+#CHROM	POS	ID	REF	ALT	QUAL	FILTER	INFO	FORMAT	NA05158	NA05162	NA07415
+X	31152287	.	G	T	31.29	.	AC=1;AF=0.167;AN=6;BaseQRankSum=-1.221e+00;DP=37;ExcessHet=0.0000;FS=0.000;MLEAC=1;MLEAF=0.167;MQ=60.00;MQRankSum=0.00;QD=3.13;ReadPosRankSum=0.140;SOR=0.368	GT:AD:DP:GQ:PL	0/1:8,2:10:40:40,0,217	0/0:17,0:17:51:0,51,491	0/0:9,0:9:27:0,27,262
+X	31496350	.	C	T	1175.69	.	AC=6;AF=1.00;AN=6;DP=41;ExcessHet=0.0000;FS=0.000;MLEAC=6;MLEAF=1.00;MQ=60.00;QD=29.39;SOR=1.292	GT:AD:DP:GQ:PL	1/1:0,22:22:66:634,66,0	1/1:0,10:10:30:297,30,0	1/1:0,8:8:24:258,24,0
+X	31496426	.	T	C	686.08	.	AC=3;AF=0.500;AN=6;BaseQRankSum=0.00;DP=36;ExcessHet=0.0000;FS=0.000;MLEAC=3;MLEAF=0.500;MQ=60.00;MQRankSum=0.00;QD=22.87;ReadPosRankSum=1.56;SOR=0.693	GT:AD:DP:GQ:PGT:PID:PL:PS	0/1:13,8:21:99:.:.:297,0,522	1|1:0,9:9:27:1|1:31496426_T_C:405,27,0:31496426	0/0:5,0:5:15:.:.:0,15,174
+X	31496431	.	T	A	689.07	.	AC=3;AF=0.500;AN=6;BaseQRankSum=1.66;DP=36;ExcessHet=0.0000;FS=1.451;MLEAC=3;MLEAF=0.500;MQ=60.00;MQRankSum=0.00;QD=23.76;ReadPosRankSum=1.39;SOR=0.572	GT:AD:DP:GQ:PGT:PID:PL:PS	0/1:12,8:22:99:.:.:300,0,460	1|1:0,9:9:27:1|1:31496426_T_C:405,27,0:31496426	0/0:5,0:5:15:.:.:0,15,174
+X	31697636	.	A	G	143.52	.	AC=1;AF=0.167;AN=6;BaseQRankSum=1.34;DP=28;ExcessHet=0.0000;FS=0.000;MLEAC=1;MLEAF=0.167;MQ=60.00;MQRankSum=0.00;QD=13.05;ReadPosRankSum=-1.158e+00;SOR=1.022	GT:AD:DP:GQ:PGT:PID:PL:PS	0|1:6,5:11:99:0|1:31697636_A_G:151,0,115:31697636	0/0:6,0:6:0:.:.:0,0,129	0/0:11,0:11:33:.:.:0,33,302
+X	32380996	.	C	T	725.31	.	AC=2;AF=0.333;AN=6;DP=71;ExcessHet=0.0000;FS=0.000;MLEAC=2;MLEAF=0.333;MQ=60.00;QD=25.90;SOR=0.836	GT:AD:DP:GQ:PL	0/0:27,0:27:12:0,12,679	0/0:13,0:13:39:0,39,391	1/1:0,28:28:82:742,82,0
+X	32503194	.	T	C	898.86	.	AC=5;AF=0.833;AN=6;BaseQRankSum=0.693;DP=56;ExcessHet=0.0000;FS=0.000;MLEAC=5;MLEAF=0.833;MQ=60.00;MQRankSum=0.00;QD=16.65;ReadPosRankSum=-1.234e+00;SOR=0.662	GT:AD:DP:GQ:PL	0/1:22,14:36:99:318,0,536	1/1:0,11:11:33:352,33,0	1/1:0,7:7:21:243,21,0
+X	32509558	.	T	G	201.28	.	AC=2;AF=0.333;AN=6;DP=43;ExcessHet=0.0000;FS=0.000;MLEAC=2;MLEAF=0.333;MQ=60.00;QD=25.16;SOR=1.179	GT:AD:DP:GQ:PL	0/0:31,0:31:90:0,90,1350	0/0:4,0:4:12:0,12,99	1/1:0,8:8:24:218,24,0
